@@ -17,19 +17,17 @@ class AccountUserController extends Controller
     {
         return new UserResource($request->user());
     }
-    
     public function updateUserInformation(AccountRequest $request)
     {
-        /** @var \App\Models\User $user */
         $user = Auth::user();
-    
+        $fullName = trim($request->firstName . ' ' . $request->lastName);
+
         $user->update([
+            'name'  => $fullName ?: $user->name,
             'phone' => $request->phone ?? $user->phone,
             'email' => $request->email ?? $user->email,
-            'firstName' => $request->firstName ?? $user->firstName,
-            'lastName' => $request->lastName ?? $user->lastName,
         ]);
-    
+
         return new UserResource($user);
     }
 

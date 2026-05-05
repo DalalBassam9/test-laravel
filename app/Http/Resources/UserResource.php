@@ -14,11 +14,13 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $parts = explode(' ', $this->name, 2);
+
         return [
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
-            'email' => $this->email,
-            'phone' => $this->phone,
+            'firstName' => $parts[0] ?? '',
+            'lastName'  => $parts[1] ?? '',
+            'email'     => $this->email,
+            'phone'     => $this->phone,
         ];
     }
 }

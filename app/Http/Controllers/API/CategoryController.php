@@ -76,27 +76,22 @@ class CategoryController extends Controller
             default => null,
         };
 
-        // Paginate the results
         $products = $query->paginate(3);
 
         return ProductResource::collection($products);
     }
-    public function getCategoryProducts($slug)
-    {
-        $category = Category::where('slug', $slug)->firstOrFail();
+   public function getCategoryProducts($slug)
+{
+    $category = Category::where('slug', $slug)->firstOrFail();
 
+    $products = Product::where('quantity', '>', 0)
+        ->with('images', 'category')            
+        ->where('category_id', $category->id)   
+        ->get();
 
-        // جلب المنتجات التي تنتمي لهذه الفئة (عبر العلاقة many-to-many)
-        $productsQuery = Product::where('quantity', '>', 0)->with('images', 'categories')
-            ->whereHas('categories', function ($q) use ($category) {
-                $q->where('categories.id', $category->id);
-            });
-
-        $products = $productsQuery->get();
-
-        return response()->json([
-            'category' => new CategoryResource($category),
-            'products' => ProductResource::collection($products)
-        ]);
-    }
+    return response()->json([
+        'category' => new CategoryResource($category),
+        'products' => ProductResource::collection($products)
+    ]);
+}
 }
