@@ -14,6 +14,9 @@ class CategoryForm
             ->components([
                 TextInput::make('name')
                     ->required(),
+                TextInput::make('description')
+                    ->textarea()
+                    ->nullable(),
                 FileUpload::make('image')
                     ->image(),
                 TextInput::make('slug')

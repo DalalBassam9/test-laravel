@@ -38,9 +38,9 @@ class ProductController extends Controller
     /**
      * Display the specified product.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $product = Product::with('images')->findOrFail($id);
+        $product = Product::with('images')->where('slug', $slug)->firstOrFail();
         return new ProductResource($product);
     }
     public function getProductBoxs(Request $request)

@@ -13,6 +13,8 @@ class ProductInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
+
+                TextEntry::make('slug'),
                 TextEntry::make('description')
                     ->placeholder('-')
                     ->columnSpanFull(),

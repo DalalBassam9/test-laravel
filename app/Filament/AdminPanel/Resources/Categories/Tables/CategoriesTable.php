@@ -18,6 +18,9 @@ class CategoriesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('description')
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 ImageColumn::make('image'),
                 TextColumn::make('created_at')
                     ->dateTime()

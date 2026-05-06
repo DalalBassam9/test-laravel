@@ -25,6 +25,8 @@ class CategoryRequest extends FormRequest
             'name' => ['string', 'max:255'],
           //  'type' => ['string', 'in:regular,box,gift_package'],
             'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'slug' => ['string', 'max:255', 'unique:categories,slug,' . $this->route('category')],
+            'description' => ['nullable', 'string', 'max:255'],
             'parent_id' => ['nullable', 'exists:categories,id'],
           //  'category_ids' => 'required|array|min:1',
            // 'category_ids.*' => 'exists:categories,id',

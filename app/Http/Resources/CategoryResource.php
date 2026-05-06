@@ -18,6 +18,7 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'description' => $this->description,
             'image' => $this->image
                 ? route('private.image', ['path' => $this->image])
                 : null,

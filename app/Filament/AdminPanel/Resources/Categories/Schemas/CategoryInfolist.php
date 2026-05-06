@@ -13,6 +13,9 @@ class CategoryInfolist
         return $schema
             ->components([
                 TextEntry::make('name'),
+                TextEntry::make('description')
+                    ->placeholder('-')
+                    ->columnSpanFull(),
                 ImageEntry::make('image')
                     ->placeholder('-'),
                 TextEntry::make('created_at')

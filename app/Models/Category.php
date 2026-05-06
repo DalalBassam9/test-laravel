@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'image', 'slug'];
+    protected $fillable = ['name', 'description', 'image', 'slug'];
 
  
     public function products(): BelongsToMany

@@ -64,7 +64,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::get('/products/featured', [APIProductController::class, 'featuredProducts']);
-Route::get('/products/{id}', [APIProductController::class, 'show']);
+Route::get('/products/{slug}', [APIProductController::class, 'show']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
